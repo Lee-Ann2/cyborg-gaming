@@ -86,7 +86,7 @@ button:hover {
 }
 
 .form-group.error input {
-    background-color: #e74c3c;
+    border-color: #e74c3c;
 }
 
 .form-group.success input {
@@ -97,3 +97,14 @@ button:hover {
     visibility: visible;
     color: #e74c3c;
 }
+
+.password-strength {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.strength-1 {color: #e74c3c;}
+.strength-2 {color: #f39c12;}
+.strength-3 {color: #f1c40f;}
+.strength-4 {color: #2ecc71;}
+.strength-5 {color: #27ae60;}
