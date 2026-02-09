@@ -3,10 +3,10 @@ const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const confirmedPassword =  document.getElementById("confirmedPassword");
+const button = document.getElementById("btn");
 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
-
 
     resetErrors([username, email, password, confirmedPassword]);
     const isRequiredValid = checkRequired([username, email, password, confirmedPassword])
@@ -18,8 +18,18 @@ form.addEventListener("submit", function (e) {
     if(isRequiredValid && isUsernameValid && isEmailValid && isPasswordValid && isPasswordMatchValid) {
         console.log("Form submitted successfully!");
 
-        showSuccess();
+        showFormSuccess();
+
+        setTimeout(() => {
+            window.open('/public/main', '_blank');
+        }, 500);
+
+        // setTimeout(() => {
+        //     window.open('/public/main', '_blank');
+        // }, 2000);
+
     }
+
 });
 
 function resetErrors(inputArray) {
@@ -103,6 +113,7 @@ function showError(input, message) {
 }
 
 function showSuccess(input, message) {
+    if(!input) return;
     const formGroup = input.parentElement;
     formGroup.className = "form-group success";
     const small = formGroup.querySelector("small");
@@ -111,16 +122,9 @@ function showSuccess(input, message) {
 }
 
 function showFormSuccess() {
-    alert("Registration successfull! Welcome!");
-
-    const formHeader = document.querySelector("h1");
-    formHeader.innerHTML = "Registration Successful! <i class='fas fa-check'></i>";
-    formHeader.style.color = "#2ecc71";
-
-    setTimeout(() => {
-        form.reset();
-        resetErrors([username, email, password, confirmedPassword]);
-        formHeader.innerHTML = "Sign Up";
-        formHeader.style.color = "#333";
-    }, 2000)
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        form.dispatchEvent(new Event('submmit'));
+    })
 }
+
