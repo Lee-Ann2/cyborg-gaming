@@ -21,7 +21,7 @@ form.addEventListener("submit", function (e) {
         showFormSuccess();
 
         setTimeout(() => {
-            window.open('/public/main', '_blank');
+            window.open('public/main', '_blank');
         }, 500);
 
         // setTimeout(() => {
@@ -91,11 +91,11 @@ function checkEmail(input) {
 }
 
 function checkPasswordMatch(passwordInput, confirmedPasswordInput) {
-    if(passwordInput.value.trim() === "" || confirmedPassword.value.trim() === "") {
+    if(passwordInput.value.trim() === "" || confirmedPasswordInput.value.trim() === "") {
         return false;
     }
 
-    if(passwordInput.value !== confirmedPassword.value) {
+    if(passwordInput.value !== confirmedPasswordInput.value) {
         showError(confirmedPasswordInput, "Passwords do not match");
         return false;
     } else {
