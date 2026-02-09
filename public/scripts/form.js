@@ -7,8 +7,30 @@ const confirmedPassword =  document.getElementById("confirmedPassword");
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const isRequired = checkRequired([username, email, password, confirmedPassword])
+
+    resetErrors([username, email, password, confirmedPassword]);
+    const isRequiredValid = checkRequired([username, email, password, confirmedPassword])
+    const isUsernameValid = checkLength(username, 3, 15);
+    const isEmailValid = checkEmail(email);
+    const isPasswordValid = checkLength(password, 8, 25);
+    const isPasswordMatchValid = checkPasswordMatch(password, confirmedPassword);
+
+    if(isRequiredValid && isUsernameValid && isEmailValid && isPasswordValid && isPasswordMatchValid) {
+        console.log("Form submitted successfully!");
+
+        showSuccess();
+    }
 });
+
+function resetErrors(inputArray) {
+    inputArray.forEach(input => {
+        const formGroup = input.parentElement;
+        formGroup.className = "form-group";
+        const small = formGroup.querySelector("small");
+        small.innerText = "";
+        small.style.visibility = "hidden";
+    });
+}
 
 function checkRequired(inputArray) {
     let isValid = true;
@@ -20,11 +42,56 @@ function checkRequired(inputArray) {
         } else {
             showSuccess(input);
         }
-    })
+    });
+
+    return isValid;
 };
 
 function formatFieldName(input) {
-    return input.id.char(0).toUpperCase() + input.id.slice(1);
+    const name = input.id.replace(/([A-Z])/g, '$1');
+    return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+function checkLength(input, min, max) {
+    if(input.value.trim() === "") return false;
+
+    if(input.value.length < min) {
+        showError(input, `${formatFieldName(input)} must be atleast ${min} characters`);
+        return false;
+    } else if(input.value.length > max) {
+        showError(input, `${formatFieldName(input)} must be less than ${max} characters`);
+        return false;
+    } else {
+        showSuccess(input);
+        return true;
+    };
+}
+
+function checkEmail(input) {
+    if(input.value.trim() === "") return false;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailRegex.test(input.value.trim())) {
+        showError(input, "Email is not valid");
+        return false;
+    } else {
+        showSuccess(input);
+        return true;
+    }
+}
+
+function checkPasswordMatch(passwordInput, confirmedPasswordInput) {
+    if(passwordInput.value.trim() === "" || confirmedPassword.value.trim() === "") {
+        return false;
+    }
+
+    if(passwordInput.value !== confirmedPassword.value) {
+        showError(confirmedPasswordInput, "Passwords do not match");
+        return false;
+    } else {
+        showSuccess(confirmedPasswordInput);
+        return true;
+    }
 }
 
 function showError(input, message) {
@@ -32,9 +99,28 @@ function showError(input, message) {
     formGroup.className = "form-group error"
     const small = formGroup.querySelector("small");
     small.innerText = message;
+    small.style.visibility = "visible"
 }
 
 function showSuccess(input, message) {
     const formGroup = input.parentElement;
-    formGroup.className = "form-group success"
+    formGroup.className = "form-group success";
+    const small = formGroup.querySelector("small");
+    small.innerText = "";
+    small.style.visibility = "hidden";
+}
+
+function showFormSuccess() {
+    alert("Registration successfull! Welcome!");
+
+    const formHeader = document.querySelector("h1");
+    formHeader.innerHTML = "Registration Successful! <i class='fas fa-check'></i>";
+    formHeader.style.color = "#2ecc71";
+
+    setTimeout(() => {
+        form.reset();
+        resetErrors([username, email, password, confirmedPassword]);
+        formHeader.innerHTML = "Sign Up";
+        formHeader.style.color = "#333";
+    }, 2000)
 }
