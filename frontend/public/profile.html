@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyborg | Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/public/css/profile.css">
+</head>
+<body>
+    <div class="cyborg-container">
+        <nav class="navbar">
+            <div class="logo">CYBORG</div>
+            <div class="search-bar" id="searchBar">
+                <i class="fas fa-search"></i>
+                <span>QType Something</span>
+            </div>
+            <div class="nav-links">
+                <a href="/frontend/public/home.html">Home</a>
+                <a href="/frontend/public/browse.html">Browse</a>
+                <a href="/frontend/public/details.html">Details</a>
+                <a href="/frontend/public/streams.html">Streams</a>
+                <a href="/frontend/public/profile.html" class="active-nav">Profile</a>
+            </div>
+            <div class="profile-icon" id="profileBtn">
+                <i class="fas fa-user-astronaut"></i>
+                <span id="profileUsername">Gamer_4L</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </nav>
+
+        <div class="profile-header-row">
+            <div class="profile-status">
+                <div class="avatar-large">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="status-info">
+                    <h2 id="displayUsername">AlanSmithee</h2>
+                    <p><i class="fas fa-circle offline-dot"></i> Offline</p>
+                </div>
+            </div>
+            <div class="profile-stats">
+                <div class="stat-circle">
+                    <span class="stat-number">16</span>
+                    <span class="stat-label">Games<br>Downloaded</span>
+                </div>
+                <div class="stat-circle">
+                    <span class="stat-number">29</span>
+                    <span class="stat-label">Friends<br>Online</span>
+                </div>
+                <div class="stat-circle">
+                    <span class="stat-number">08</span>
+                    <span class="stat-label">Clips</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="live-status-row">
+            <div class="live-message">
+                <i class="fas fa-circle live-icon"></i>
+                <span>You Haven't Gone Live yet. Go Live By Touching The Button Below.</span>
+            </div>
+            <button id="startLiveBtn" class="start-live-btn"><i class="fas fa-video"></i> Start Live Stream</button>
+        </div>
+
+        <div class="clips-header">
+            <h2>Your Most Popular Clips</h2>
+            <span class="clips-count">29 clips</span>
+        </div>
+
+        <div class="clips-grid" id="clipsGrid">
+            <div class="clip-card">
+                <div class="clip-thumbnail">
+                    <i class="fas fa-play-circle play-icon-small"></i>
+                    <span class="clip-number">FirstClip</span>
+                </div>
+                <div class="clip-views">
+                    <i class="fas fa-eye"></i> 250
+                </div>
+            </div>
+            <div class="clip-card">
+                <div class="clip-thumbnail">
+                    <i class="fas fa-play-circle play-icon-small"></i>
+                    <span class="clip-number">Second Clip</span>
+                </div>
+                <div class="clip-views">
+                    <i class="fas fa-eye"></i> 183
+                </div>
+            </div>
+            <div class="clip-card">
+                <div class="clip-thumbnail">
+                    <i class="fas fa-play-circle play-icon-small"></i>
+                    <span class="clip-number">Third Clip</span>
+                </div>
+                <div class="clip-views">
+                    <i class="fas fa-eye"></i> 141
+                </div>
+            </div>
+            <div class="clip-card">
+                <div class="clip-thumbnail">
+                    <i class="fas fa-play-circle play-icon-small"></i>
+                    <span class="clip-number">Fourth Clip</span>
+                </div>
+                <div class="clip-views">
+                    <i class="fas fa-eye"></i> 91
+                </div>
+            </div>
+        </div>
+
+        <div class="load-more-clips">
+            <button id="loadMoreClipsBtn" class="load-clips-btn"><i class="fas fa-plus-circle"></i> Load More Clips</button>
+        </div>
+
+        <div class="library-header">
+            <h2>Your Gaming Library</h2>
+        </div>
+
+        <div class="library-list" id="libraryList">
+            <div class="library-item" data-game="dota2">
+                <div class="game-avatar">
+                    <i class="fas fa-hat-wizard"></i>
+                    <span class="game-name">Dota2</span>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Date Added</span>
+                    <strong>24/08/2036</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Hours Played</span>
+                    <strong>634H 22Mins</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Currently</span>
+                    <strong><i class="fas fa-download downloaded-icon"></i> Downloaded</strong>
+                </div>
+                <div class="downloaded-badge"><i class="fas fa-check-circle"></i> DOWNLOADED</div>
+            </div>
+
+            <div class="library-item" data-game="fortnite">
+                <div class="game-avatar">
+                    <i class="fas fa-fort-awesome"></i>
+                    <span class="game-name">Fortnite</span>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Date Added</span>
+                    <strong>22/06/2036</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Hours Played</span>
+                    <strong>745H 22Mins</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Currently</span>
+                    <strong><i class="fas fa-download downloaded-icon"></i> Downloaded</strong>
+                </div>
+                <div class="downloaded-badge"><i class="fas fa-check-circle"></i> DOWNLOADED</div>
+            </div>
+
+            <div class="library-item" data-game="csgo">
+                <div class="game-avatar">
+                    <i class="fas fa-skull-crossbones"></i>
+                    <span class="game-name">CS-GO</span>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Date Added</span>
+                    <strong>21/04/2022</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Hours Played</span>
+                    <strong>632H 46Mins</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Currently</span>
+                    <strong><i class="fas fa-download downloaded-icon"></i> Downloaded</strong>
+                </div>
+                <div class="downloaded-badge"><i class="fas fa-check-circle"></i> DOWNLOADED</div>
+            </div>
+        </div>
+
+        <footer class="cyborg-footer">
+            <p>Copyright @ 2036 Cyborg Gaming Company. All rights reserved. Design: TemplateMo</p>
+        </footer>
+    </div>
+
+    <script src="/frontend/public/js/auth.js"></script>
+    <script src="/frontend/public/js/profile.js"></script>
+</body>
+</html>

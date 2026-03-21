@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyborg | browse games</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/public/css/browse.css">
+</head>
+<body>
+    <div class="cyborg-container">
+        <nav class="navbar">
+            <div class="logo">CYBORG</div>
+            <div class="nav-links">
+                <a href="/frontend/public/home.html">Home</a>
+                <a href="/frontend/public/browse.html" class="active-nav">Browse</a>
+                <a href="/frontend/public/details.html">Details</a>
+                <a href="/frontend/public/streams.html">Streams</a>
+                <a href="/frontend/public/profile.html">Profile</a>
+            </div>
+            <div class="profile-icon" id="profileBtn">
+                <i class="fas fa-user-astronaut"></i>
+                <span>Gamer_4L</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </nav>
+
+        <div class="live-cta-row">
+            <div class="go-to-profile" id="goToProfile">
+                <i class="fas fa-user-circle"></i>
+                <span>Go To Your Profile</span>
+            </div>
+            <div class="live-stream-btn" id="liveStreamBtn">
+                <i class="fas fa-video"></i>
+                <span>Live Stream</span>
+                <span class="live-badge">START</span>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <div class="info-links">
+                <span class="highlight">⚡ Welcome back, Gamer_4L</span> — Check out what's new in your 
+                <a href="/frontend/public/profile.html" class="go-to-profile-link">Profile <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Most Popular Live Stream</h2>
+            <span class="view-all">View All <i class="fas fa-chevron-right"></i></span>
+        </div>
+
+        <div class="live-grid">
+            <div class="live-card" data-streamer="Kross">
+                <div class="live-avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="live-info">
+                    <h3>Kross</h3>
+                    <div class="live-tag"><i class="fas fa-circle"></i> LIVE • 3.2k viewers</div>
+                </div>
+                <div class="game-label">EaglesFly</div>
+            </div>
+            <div class="live-card" data-streamer="Zara">
+                <div class="live-avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="live-info">
+                    <h3>Zara</h3>
+                    <div class="live-tag"><i class="fas fa-circle"></i> LIVE • 2.1k viewers</div>
+                </div>
+                <div class="game-label">Warface</div>
+            </div>
+            <div class="live-card" data-streamer="Shadow">
+                <div class="live-avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="live-info">
+                    <h3>Shadow</h3>
+                    <div class="live-tag"><i class="fas fa-circle"></i> LIVE • 5.4k viewers</div>
+                </div>
+                <div class="game-label">Warcraft</div>
+            </div>
+            <div class="live-card" data-streamer="Nova">
+                <div class="live-avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="live-info">
+                    <h3>Nova</h3>
+                    <div class="live-tag"><i class="fas fa-circle"></i> LIVE • 1.8k viewers</div>
+                </div>
+                <div class="game-label">Mini Craft</div>
+            </div>
+        </div>
+
+        <div class="discover-streams">
+            <a href="/frontend/public/streams.html" class="discover-btn">
+                <i class="fas fa-compass"></i> Discover All Streams
+            </a>
+        </div>
+
+        <div class="featured-header">
+            <h2>Featured Games <span class="sub-header">handpicked just for you</span></h2>
+            <a href="/frontend/public/browse.html?view=all" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="featured-grid">
+            <div class="featured-card" data-game="Dota2">
+                <div class="feat-icon"><i class="fas fa-hat-wizard"></i></div>
+                <div>
+                    <h3>Dota2 <span class="game-cat">MOBA</span></h3>
+                    <div class="rating-downloads">★★★★★ <span>2.3M</span></div>
+                </div>
+            </div>
+            <div class="featured-card" data-game="Fortnite">
+                <div class="feat-icon"><i class="fas fa-fort-awesome"></i></div>
+                <div>
+                    <h3>Fortnite <span class="game-cat">Battle Royale</span></h3>
+                    <div class="rating-downloads">★★★★☆ <span>3.1M</span></div>
+                </div>
+            </div>
+            <div class="featured-card" data-game="CS-GO">
+                <div class="feat-icon"><i class="fas fa-skull-crossbones"></i></div>
+                <div>
+                    <h3>CS-GO <span class="game-cat">Shooter</span></h3>
+                    <div class="rating-downloads">★★★★★ <span>4.2M</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mini-games-row">
+            <div class="mini-game-item" data-game="IslandRusty">
+                <i class="fas fa-tree"></i>
+                <div class="mini-details">
+                    <span class="mini-title">Island Rusty</span>
+                    <span class="mini-rating">★★★★☆</span>
+                </div>
+                <div class="mini-dl">2.1M <i class="fas fa-download"></i></div>
+            </div>
+            <div class="mini-game-item" data-game="CS-GO">
+                <i class="fas fa-crosshairs"></i>
+                <div class="mini-details">
+                    <span class="mini-title">CS-GO</span>
+                    <span class="mini-rating">★★★★★</span>
+                </div>
+                <div class="mini-dl">3.4M <i class="fas fa-download"></i></div>
+            </div>
+            <div class="mini-game-item" data-game="Gamezer">
+                <i class="fas fa-dice"></i>
+                <div class="mini-details">
+                    <span class="mini-title">Gamezer</span>
+                    <span class="mini-rating">★★★★☆</span>
+                </div>
+                <div class="mini-dl">1.8M <i class="fas fa-download"></i></div>
+            </div>
+        </div>
+
+        <div class="how-to-stream">
+            <h3><i class="fas fa-question-circle"></i> How to start your live stream?</h3>
+            <div class="step-wrapper">
+                <div class="step">
+                    <span class="step-num">1</span>
+                    <p>Go to Profile</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    <p>Click "Go Live"</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <p>Select Game</p>
+                </div>
+                <div class="step">
+                    <span class="step-num">4</span>
+                    <p>Start Streaming</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="cyborg-footer">
+            <p>Copyright @ 2036 Cyborg Gaming Company. All rights reserved. Design: TemplateMo</p>
+        </footer>
+    </div>
+
+    <script src="/frontend/public/js/browse.js"></script>
+</body>
+</html>

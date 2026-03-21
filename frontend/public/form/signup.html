@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up | Cyborg</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/frontend/public/css/styles.css" />
+  <link rel="stylesheet" href="/frontend/public/css/auth.css" />
+</head>
+<body>
+  <div class="cyborg-container auth-page">
+    <nav class="navbar">
+      <div class="logo">CYBORG</div>
+      <div class="auth-nav">
+        <a href="signin.html">Sign In</a>
+        <a href="signup.html" class="auth-cta active-auth">Sign Up</a>
+      </div>
+    </nav>
+
+    <section class="auth-container">
+      <div class="auth-card">
+        <div class="auth-glow"></div>
+        <h2 class="glow-text">Create Account</h2>
+        <p class="auth-subtitle">Start your gaming journey today</p>
+
+        <form id="signupForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-user"></i> Username</label>
+              <input type="text" id="signupUsername" placeholder="GamerTag" required />
+              <small class="error" id="signupUsernameError"></small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="signupEmail" placeholder="your@email.com" required />
+            <small class="error" id="signupEmailError"></small>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label><i class="fas fa-lock"></i> Password</label>
+              <input type="password" id="signupPassword" placeholder="••••••••" required />
+              <small class="error" id="signupPasswordError"></small>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-check-circle"></i> Confirm</label>
+              <input type="password" id="signupConfirmPassword" placeholder="••••••••" required />
+              <small class="error" id="signupConfirmPasswordError"></small>
+            </div>
+          </div>
+
+          <div class="password-strength" id="passwordStrength">
+            <div class="strength-bar" id="strengthBar"></div>
+            <span class="strength-text">Use at least 6 characters</span>
+          </div>
+
+          <div class="terms-checkbox">
+            <label class="checkbox-container">
+              <input type="checkbox" id="agreeTerms" required>
+              <span class="checkmark"></span>
+              I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+            </label>
+          </div>
+
+          <button type="submit" class="auth-btn">
+            <i class="fas fa-user-plus"></i> Sign Up
+          </button>
+
+          <div class="switch-auth">
+            <p>Already have an account? <a href="signin.html">Sign In</a></p>
+          </div>
+
+          <div id="signupSuccess" class="success-message"></div>
+          <div id="signupError" class="error-message"></div>
+        </form>
+      </div>
+
+      <div class="auth-decoration">
+        <div class="feature-list">
+          <h3><i class="fas fa-crown"></i> Join for exclusive benefits:</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Track your game stats</li>
+            <li><i class="fas fa-check-circle"></i> Save favorite streams</li>
+            <li><i class="fas fa-check-circle"></i> Connect with gamers</li>
+            <li><i class="fas fa-check-circle"></i> Create clip collections</li>
+          </ul>
+        </div>
+        <div class="live-preview">
+          <i class="fas fa-users"></i>
+          <span>2,345 online now</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="cyborg-footer">
+      <p>Copyright @ 2036 Cyborg Gaming Company. All rights reserved. Design: TemplateMo</p>
+    </footer>
+  </div>
+
+  <script src="/frontend/public/js/auth.js"></script>
+</body>
+</html>

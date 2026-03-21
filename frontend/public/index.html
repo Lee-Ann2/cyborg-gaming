@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberStats</title>
+  <link rel="stylesheet" href="/frontend/public/css/styles.css" />
+</head>
+<body>
+
+  <div class="cursor"></div>
+
+  <header class="navbar">
+    <div class="logo">CYBER<span>STATS</span></div>
+    <nav class="nav-links">
+      <a href="/frontend/public/form/signin.html">Sign In</a>
+      <a href="/frontend/public/form/signup.html" class="nav-cta">Sign Up</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="glow-text">Track. Compare. Dominate.</h1>
+      <p class="subtitle">Real-time competitive gaming intelligence.</p>
+
+      <form id="searchForm" class="search-box">
+        <input type="text" id="username" placeholder="Enter Username..." required />
+        <button type="submit">Search</button>
+      </form>
+
+      <div id="searchResult" class="search-result"></div>
+    </div>
+
+    <div class="grid-overlay"></div>
+  </section>
+
+  <section id="about" class="features">
+    <div class="feature-card">
+      <h3>Live Stats</h3>
+      <p>Real-time player performance analytics.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Leaderboards</h3>
+      <p>Global rankings across competitive games.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Advanced Metrics</h3>
+      <p>Deep performance breakdown & match history.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="cta">
+    <h2>Ready to Level Up?</h2>
+    <button id="ctaButton">Enter Platform</button>
+  </section>
+
+  <footer>
+    <p>© 2026 CyberStats. All rights reserved.</p>
+  </footer>
+
+  <script src="/frontend/public/js/main.js"></script>
+</body>
+</html>

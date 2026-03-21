@@ -1,0 +1,57 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "name": "Dota2",
+      "genre": "MOBA",
+      "rating": 4.8,
+      "downloads": 2300000,
+      "description": "Multiplayer online battle arena game",
+      "release_date": "2023",
+      "platform": "PC"
+    },
+    {
+      "id": 2,
+      "name": "Fortnite",
+      "genre": "Battle Royale",
+      "rating": 4.7,
+      "downloads": 3100000,
+      "description": "Battle royale survival game",
+      "release_date": "2023",
+      "platform": "PC, Console, Mobile"
+    },
+    {
+      "id": 3,
+      "name": "CS-GO",
+      "genre": "Shooter",
+      "rating": 4.9,
+      "downloads": 4200000,
+      "description": "Competitive first-person shooter",
+      "release_date": "2022",
+      "platform": "PC"
+    }
+  ],
+  "clips": [
+    {
+      "id": 1,
+      "name": "Epic Victory",
+      "views": 1250,
+      "duration": "45s",
+      "game": "Fortnite"
+    },
+    {
+      "id": 2,
+      "name": "Clutch Moment",
+      "views": 890,
+      "duration": "32s",
+      "game": "CS-GO"
+    },
+    {
+      "id": 3,
+      "name": "Insane Play",
+      "views": 2340,
+      "duration": "58s",
+      "game": "Dota2"
+    }
+  ]
+}

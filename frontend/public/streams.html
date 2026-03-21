@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyborg | Streams</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/public/css/streams.css">
+</head>
+<body>
+    <div class="cyborg-container">
+        <nav class="navbar">
+            <div class="logo">CYBORG</div>
+            <div class="nav-links">
+                <a href="/frontend/public/home.html">Home</a>
+                <a href="/frontend/public/browse.html">Browse</a>
+                <a href="/frontend/public/details.html">Details</a>
+                <a href="/frontend/public/streams.html" class="active-nav">Streams</a>
+                <a href="/frontend/public/profile.html">Profile</a>
+            </div>
+            <div class="profile-icon" id="profileBtn">
+                <i class="fas fa-user-astronaut"></i>
+                <span>Gamer_4L</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </nav>
+
+        <div class="streams-header-row">
+            <h1>Live Streams</h1>
+            <div class="top-streamers-label">Top Streamers</div>
+        </div>
+
+        <div class="top-streamers-row">
+            <div class="streamer-follow-card" data-streamer="LahutaM">
+                <i class="fas fa-user-circle"></i>
+                <span>LahutaM</span>
+                <button class="follow-btn"><i class="fas fa-plus"></i> Follow</button>
+            </div>
+            <div class="streamer-follow-card" data-streamer="Kengan">
+                <i class="fas fa-user-circle"></i>
+                <span>Kengan</span>
+                <button class="follow-btn"><i class="fas fa-plus"></i> Follow</button>
+            </div>
+            <div class="streamer-follow-card" data-streamer="Areluwa">
+                <i class="fas fa-user-circle"></i>
+                <span>Areluwa</span>
+                <button class="follow-btn"><i class="fas fa-plus"></i> Follow</button>
+            </div>
+            <div class="streamer-follow-card" data-streamer="OMeg">
+                <i class="fas fa-user-circle"></i>
+                <span>OMeg</span>
+                <button class="follow-btn"><i class="fas fa-plus"></i> Follow</button>
+            </div>
+            <div class="streamer-follow-card" data-streamer="GangTeam">
+                <i class="fas fa-user-circle"></i>
+                <span>GangTeam</span>
+                <button class="follow-btn"><i class="fas fa-plus"></i> Follow</button>
+            </div>
+        </div>
+
+        <div class="mini-games-row">
+            <div class="mini-game-item" data-game="Island Rusty">
+                <i class="fas fa-tree"></i>
+                <div class="mini-details">
+                    <span class="mini-title">Island Rusty</span>
+                    <span class="mini-rating">★4.8</span>
+                </div>
+                <span class="mini-dl">249K Downloads <i class="fas fa-download"></i></span>
+            </div>
+            <div class="mini-game-item" data-game="CS-GO">
+                <i class="fas fa-crosshairs"></i>
+                <div class="mini-details">
+                    <span class="mini-title">CS-GO</span>
+                    <span class="mini-rating">★4.8</span>
+                </div>
+                <span class="mini-dl">2.3M <i class="fas fa-download"></i></span>
+            </div>
+            <div class="mini-game-item" data-game="Gamezer">
+                <i class="fas fa-dice-d6"></i>
+                <div class="mini-details">
+                    <span class="mini-title">Gamezer</span>
+                    <span class="mini-rating">★4.8</span>
+                </div>
+                <span class="mini-dl">249K Downloads <i class="fas fa-download"></i></span>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Most Popular Live Stream</h2>
+            <p class="view-all"><i class="far fa-eye"></i> 6.2k watching</p>
+        </div>
+
+        <div class="live-grid" id="liveStreamGrid">
+            <div class="live-card" data-streamer="Kengan Omeg">
+                <div class="live-avatar"><i class="fas fa-user-ninja"></i></div>
+                <div class="live-info">
+                    <h3>Kengan Omeg</h3>
+                    <p class="live-tag"><i class="fas fa-circle"></i> Just Talking With</p>
+                </div>
+                <span class="game-label">CS-GO 36 Hours</span>
+            </div>
+            <div class="live-card" data-streamer="LahutaMalc">
+                <div class="live-avatar"><i class="fas fa-user-astronaut"></i></div>
+                <div class="live-info">
+                    <h3>LahutaMalc</h3>
+                    <p class="live-tag"><i class="fas fa-circle"></i> Maybe Nathej</p>
+                </div>
+                <span class="game-label">Live Streaming Till</span>
+            </div>
+            <div class="live-card" data-streamer="Areluwa">
+                <div class="live-avatar"><i class="fas fa-user-secret"></i></div>
+                <div class="live-info">
+                    <h3>Areluwa</h3>
+                    <p class="live-tag"><i class="fas fa-circle"></i> Fans</p>
+                </div>
+                <span class="game-label">Live Stream</span>
+            </div>
+            <div class="live-card" data-streamer="NewGangTeam">
+                <div class="live-avatar"><i class="fas fa-user-tie"></i></div>
+                <div class="live-info">
+                    <h3>NewGangTeam</h3>
+                    <p class="live-tag"><i class="fas fa-circle"></i> Allnight Chillin'</p>
+                </div>
+                <span class="game-label">Morning</span>
+            </div>
+            <div class="live-card" data-streamer="Kengan Omeg">
+                <div class="live-avatar"><i class="fas fa-user-ninja"></i></div>
+                <div class="live-info">
+                    <h3>Kengan Omeg</h3>
+                    <p class="live-tag"><i class="fas fa-circle"></i> Just Talking With</p>
+                </div>
+                <span class="game-label">CS-GO 36 Hours</span>
+            </div>
+            <div class="live-card" data-streamer="LahutaMalc">
+                <div class="live-avatar"><i class="fas fa-user-astronaut"></i></div>
+                <div class="live-info">
+                    <h3>LahutaMalc</h3>
+                    <p class="live-tag"><i class="fas fa-circle"></i> Maybe Nathej</p>
+                </div>
+                <span class="game-label">Live Streaming Till</span>
+            </div>
+            <div class="live-card" data-streamer="Areluwa">
+                <div class="live-avatar"><i class="fas fa-user-secret"></i></div>
+                <div class="live-info">
+                    <h3>Areluwa</h3>
+                    <p class="live-tag"><i class="fas fa-circle"></i> Fans</p>
+                </div>
+                <span class="game-label">Live Stream</span>
+            </div>
+            <div class="live-card" data-streamer="NewGangTeam">
+                <div class="live-avatar"><i class="fas fa-user-tie"></i></div>
+                <div class="live-info">
+                    <h3>NewGangTeam</h3>
+                    <p class="live-tag"><i class="fas fa-circle"></i> Allnight Chillin'</p>
+                </div>
+                <span class="game-label">Morning</span>
+            </div>
+        </div>
+
+        <div class="load-more-container">
+            <button id="loadMoreBtn" class="load-more-btn"><i class="fas fa-plus-circle"></i> Load More Streams</button>
+        </div>
+
+        <footer class="cyborg-footer">
+            <p>Copyright @ 2036 Cyborg Gaming Company. All rights reserved. Design: TemplateMo</p>
+        </footer>
+    </div>
+
+    <script src="/frontend/public/js/streams.js"></script>
+</body>
+</html>

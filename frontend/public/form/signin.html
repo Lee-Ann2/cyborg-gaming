@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In | Cyborg</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/frontend/public/css/styles.css" />
+  <link rel="stylesheet" href="/frontend/public/css/auth.css" />
+</head>
+<body>
+  <div class="cyborg-container auth-page">
+    <nav class="navbar">
+      <div class="logo">CYBORG</div>
+      <div class="auth-nav">
+        <a href="signin.html" class="active-auth">Sign In</a>
+        <a href="signup.html" class="auth-cta">Sign Up</a>
+      </div>
+    </nav>
+
+    <section class="auth-container">
+      <div class="auth-card">
+        <div class="auth-glow"></div>
+        <h2 class="glow-text">Welcome Back</h2>
+        <p class="auth-subtitle">Sign in to your gaming hub</p>
+
+        <form id="signinForm" novalidate>
+          <div class="form-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="signinEmail" placeholder="your@email.com" required />
+            <small class="error" id="signinEmailError"></small>
+          </div>
+
+          <div class="form-group">
+            <label><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="signinPassword" placeholder="••••••••" required />
+            <small class="error" id="signinPasswordError"></small>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-container">
+              <input type="checkbox" id="rememberMe">
+              <span class="checkmark"></span>
+              Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="auth-btn">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </button>
+
+          <div class="switch-auth">
+            <p>New to Cyborg? <a href="signup.html">Create account</a></p>
+          </div>
+
+          <div id="signinSuccess" class="success-message"></div>
+          <div id="signinError" class="error-message"></div>
+        </form>
+      </div>
+
+      <div class="auth-decoration">
+        <div class="decoration-card">
+          <i class="fas fa-gamepad"></i>
+          <h3>Join the Community</h3>
+          <p>Access your games, streams, and clips</p>
+        </div>
+        <div class="stats-mini">
+          <div class="stat">
+            <span class="stat-value">2.3M</span>
+            <span class="stat-label">Active Players</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">1.2K</span>
+            <span class="stat-label">Live Streams</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="cyborg-footer">
+      <p>Copyright @ 2036 Cyborg Gaming Company. All rights reserved. Design: TemplateMo</p>
+    </footer>
+  </div>
+
+  <script src="/frontend/public/js/auth.js"></script>
+</body>
+</html>

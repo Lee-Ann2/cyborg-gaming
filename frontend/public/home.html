@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyborg | gaming dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/public/css/home.css">
+</head>
+<body>
+    <div class="cyborg-container">
+        <nav class="navbar">
+            <div class="logo">CYBORG</div>
+            <div class="nav-links">
+                <a href="/frontend/public/home.html" class="active-nav">Home</a>
+                <a href="/frontend/public/browse.html">Browse</a>
+                <a href="/frontend/public/details.html">Details</a>
+                <a href="/frontend/public/streams.html">Streams</a>
+                <a href="/frontend/public/profile.html">Profile</a>
+            </div>
+            <div class="profile-icon">
+                <i class="fas fa-user-astronaut"></i>
+                <span>Gamer_4L</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </nav>
+
+        <div class="welcome-block">
+            <div class="welcome-tag">Welcome To Cyborg</div>
+            <div class="welcome-title">
+                BROWSE OUR POPULAR<br>
+                <span>GAMES HERE <small>live</small></span>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Most Popular Right Now</h2>
+            <p><i class="far fa-eye"></i> 2.1k watching</p>
+        </div>
+
+        <div class="games-grid" id="popularGrid">
+            <div class="game-card" data-game="MiniCraft">
+                <div class="card-icon"><i class="fas fa-cube"></i></div>
+                <h3>Mini Craft</h3>
+                <div class="rating">★★★★☆ ★4.8 <span>1.2M</span></div>
+                <div class="meta-info"><span>Sandbox</span> <span><i class="far fa-clock"></i> 2.3M</span></div>
+            </div>
+            <div class="game-card" data-game="EaglesFly">
+                <div class="card-icon"><i class="fas fa-dove"></i></div>
+                <h3>EaglesFly</h3>
+                <div class="rating">★★★★★ ★4.8 <span>2.1M</span></div>
+                <div class="meta-info"><span>Action</span> <span><i class="far fa-clock"></i> 2.3M</span></div>
+            </div>
+            <div class="game-card" data-game="Warface">
+                <div class="card-icon"><i class="fas fa-crosshairs"></i></div>
+                <h3>Warface</h3>
+                <div class="rating">★★★★☆ ★4.8 <span>3.0M</span></div>
+                <div class="meta-info"><span>Shooter</span> <span><i class="far fa-clock"></i> 2.3M</span></div>
+            </div>
+            <div class="game-card" data-game="Warcraft">
+                <div class="card-icon"><i class="fas fa-dragon"></i></div>
+                <h3>Warcraft</h3>
+                <div class="rating">★★★★★ ★4.8 <span>2.7M</span></div>
+                <div class="meta-info"><span>RTS</span> <span><i class="far fa-clock"></i> 2.3M</span></div>
+            </div>
+        </div>
+
+        <div class="popular-stats">
+            <div class="stat-item">
+                <i class="fas fa-medal"></i> <span>Legendary</span> <span>2.3M</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-gamepad"></i> <span>Matrix Games</span> <span>2.3M</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-crown"></i> <span>Max3D</span> <span>2.3M</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-ghost"></i> <span>Legend</span> <span>2.3M</span>
+            </div>
+        </div>
+
+        <div class="library-header">
+            <h2>Discover Popular <span>Your Gaming Library</span></h2>
+            <div class="view-link" id="libraryViewBtn">View Your Library <i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <div class="library-list" id="libraryList">
+            <div class="library-item" data-game="dota2">
+                <div class="game-avatar">
+                    <i class="fas fa-hat-wizard"></i>
+                    <span class="game-name">Dota2</span>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Date Added</span>
+                    <strong>24/08/2036</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Hours Played</span>
+                    <strong>634H 22Mins</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Currently</span>
+                    <strong><i class="fas fa-download downloaded-icon"></i> Downloaded</strong>
+                </div>
+                <div class="downloaded-badge"><i class="fas fa-check-circle"></i> DOWNLOADED</div>
+            </div>
+
+            <div class="library-item" data-game="fortnite">
+                <div class="game-avatar">
+                    <i class="fas fa-fort-awesome"></i>
+                    <span class="game-name">Fortnite</span>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Date Added</span>
+                    <strong>22/06/2036</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Hours Played</span>
+                    <strong>740H 52Mins</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Currently</span>
+                    <strong><i class="fas fa-download downloaded-icon"></i> Downloaded</strong>
+                </div>
+                <div class="downloaded-badge"><i class="fas fa-check-circle"></i> DOWNLOADED</div>
+            </div>
+
+            <div class="library-item" data-game="csgo">
+                <div class="game-avatar">
+                    <i class="fas fa-skull-crossbones"></i>
+                    <span class="game-name">CS-GO</span>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Date Added</span>
+                    <strong>21/04/2036</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Hours Played</span>
+                    <strong>892H 14Mins</strong>
+                </div>
+                <div class="lib-col">
+                    <span class="small-meta">Currently</span>
+                    <strong><i class="fas fa-download downloaded-icon"></i> Downloaded</strong>
+                </div>
+                <div class="downloaded-badge"><i class="fas fa-check-circle"></i> DOWNLOADED</div>
+            </div>
+        </div>
+        
+        <div class="foot-note">© CYBORG • interactive dashboard</div>
+    </div>
+
+    <script src="/frontend/public/js/home.js"></script>
+</body>
+</html>
