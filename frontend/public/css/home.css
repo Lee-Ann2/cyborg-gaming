@@ -1,0 +1,417 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+body {
+    background: #14141f;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1.5rem 1rem;
+}
+
+.cyborg-container {
+    max-width: 1280px;
+    width: 100%;
+    background-color: #1f1f2b;
+    border-radius: 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(200, 130, 255, 0.3);
+    padding: 2rem 2.2rem;
+    color: #f0eaff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(130deg, #d48cff, #ff9be7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    font-weight: 500;
+    font-size: 1rem;
+    background: #3a3452;
+    padding: 0.6rem 1.6rem;
+    border-radius: 60px;
+    box-shadow: 0 0 15px #c999ff66;
+    border: 1px solid #9570c9;
+}
+
+.nav-links a {
+    cursor: pointer;
+    transition: 0.2s;
+    color: #cbc2f0;
+    text-decoration: none;
+}
+
+.nav-links a:hover,
+.nav-links .active-nav {
+    color: white;
+    text-shadow: 0 0 10px #ffb0ea;
+}
+
+.profile-icon {
+    background: #3a3452;
+    border-radius: 30px;
+    padding: 0.3rem 1rem 0.3rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #9570c9;
+    box-shadow: 0 0 15px #c999ff66;
+}
+
+.profile-icon i {
+    font-size: 1.6rem;
+    color: #daa5ff;
+}
+
+.profile-icon span {
+    font-weight: 600;
+    margin-right: 6px;
+    color: #f0e2ff;
+}
+
+.profile-icon .fa-chevron-down {
+    font-size: 0.8rem;
+    color: #caa2ff;
+}
+
+.welcome-block {
+    background: linear-gradient(145deg, #322e45, #2a263c);
+    border-radius: 40px;
+    padding: 2.5rem 3rem;
+    margin-bottom: 2.5rem;
+    border: 1px solid #8250b0;
+    box-shadow: 0 15px 20px -10px #0e0e1a;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.15"><polygon points="0,0 100,0 80,100 0,100" fill="%23ce8bff"/></svg>');
+    background-size: cover;
+    pointer-events: none;
+}
+
+.welcome-tag {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #dbb5ff;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-title {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: #f5edff;
+}
+
+.welcome-title span {
+    color: #dcacff;
+    display: block;
+    font-size: 3.2rem;
+    letter-spacing: -0.5px;
+}
+
+.welcome-title small {
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: inline-block;
+    background: #c154f0;
+    padding: 0.2rem 1.2rem;
+    border-radius: 50px;
+    margin-left: 1rem;
+    vertical-align: middle;
+    color: white;
+    text-transform: none;
+    background: #b56ef0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 2.5rem 0 1.5rem 0;
+}
+
+.section-header h2 {
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    color: #f6edff;
+}
+
+.section-header p {
+    color: #c9a6ff;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: default;
+}
+
+.section-header i {
+    margin-right: 6px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.8rem;
+}
+
+.game-card {
+    background: #332e45;
+    border-radius: 28px;
+    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+    transition: 0.2s;
+    border: 1px solid #8a67b5;
+    box-shadow: 0 8px 0 #0c0c14;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    border-color: #e09cff;
+    box-shadow: 0 12px 0 #0c0c14, 0 0 25px #d68eff;
+}
+
+.card-icon {
+    font-size: 2.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.card-icon .fa-cube { color: #c2f0c2; }
+.card-icon .fa-dove { color: #cfb8ff; }
+.card-icon .fa-crosshairs { color: #ffb999; }
+.card-icon .fa-dragon { color: #ffcf9e; }
+
+.game-card h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #f0e4ff;
+}
+
+.rating {
+    color: #ffd966;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.rating span {
+    background: #5a4a78;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    color: #f2e2ff;
+    margin-left: 8px;
+    font-size: 0.75rem;
+}
+
+.meta-info {
+    display: flex;
+    justify-content: space-between;
+    color: #cfbaf0;
+    font-size: 0.9rem;
+    border-top: 1px dashed #6a558b;
+    padding-top: 0.7rem;
+    margin-top: 0.3rem;
+}
+
+.popular-stats {
+    display: flex;
+    gap: 1.8rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.stat-item {
+    background: #2e2840;
+    border-radius: 18px;
+    padding: 0.8rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #9a77c7;
+    flex: 1 1 auto;
+    min-width: 150px;
+    font-weight: 600;
+    color: #f2e0ff;
+}
+
+.stat-item i {
+    font-size: 1.2rem;
+}
+
+.stat-item .fa-medal { color: #ffe070; }
+.stat-item .fa-gamepad { color: #ca97ff; }
+.stat-item .fa-crown { color: #ffcf8a; }
+.stat-item .fa-ghost { color: #e2baff; }
+
+.stat-item span:last-child {
+    margin-left: auto;
+    color: #e2c0ff;
+}
+
+.library-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3rem 0 1.5rem 0;
+}
+
+.library-header h2 {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: #f3e9ff;
+}
+
+.library-header h2 span {
+    font-size: 1rem;
+    margin-left: 15px;
+    color: #d2adff;
+    font-weight: 400;
+}
+
+.view-link {
+    color: #e6c8ff;
+    font-weight: 500;
+    background: #3e3560;
+    padding: 0.4rem 1.2rem;
+    border-radius: 40px;
+    border: 1px solid #b185f0;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.view-link:hover {
+    background: #584593;
+    border-color: #e4b5ff;
+}
+
+.library-item {
+    background: #322d48;
+    border-radius: 24px;
+    padding: 1.2rem 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #9d7ad5;
+    box-shadow: 0 6px 0 #12111c;
+    transition: 0.2s;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    cursor: pointer;
+}
+
+.library-item:hover {
+    background: #403964;
+    border-color: #dcadff;
+    box-shadow: 0 6px 0 #0e0c16, 0 0 20px #ca9aff;
+}
+
+.game-avatar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 200px;
+}
+
+.game-avatar i {
+    font-size: 2.4rem;
+    color: #cd9eff;
+}
+
+.game-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #f0e2ff;
+}
+
+.lib-col {
+    min-width: 110px;
+    color: #e3d0ff;
+    font-size: 0.95rem;
+}
+
+.lib-col strong {
+    color: white;
+    font-weight: 500;
+    display: block;
+    font-size: 1.1rem;
+}
+
+.small-meta {
+    font-size: 0.8rem;
+    color: #c7aaff;
+}
+
+.downloaded-icon {
+    color: #8bef9b;
+    margin-right: 4px;
+}
+
+.downloaded-badge {
+    background: #4e4080;
+    border-radius: 50px;
+    padding: 0.4rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    border: 1px solid #c78eff;
+    color: #f3e2ff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.downloaded-badge i {
+    color: #9affa8;
+}
+
+.foot-note {
+    margin-top: 2rem;
+    text-align: right;
+    color: #6a5b8c;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 1000px) {
+    .games-grid { grid-template-columns: repeat(2,1fr); }
+    .library-item { flex-direction: column; align-items: flex-start; }
+    .game-avatar { width: auto; }
+}
+
+@media (max-width: 650px) {
+    .navbar { flex-direction: column; align-items: stretch; }
+    .welcome-title { font-size: 2.5rem; }
+    .welcome-title span { font-size: 2.2rem; }
+}
