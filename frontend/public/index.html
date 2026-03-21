@@ -1,65 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CyberStats</title>
-  <link rel="stylesheet" href="/frontend/public/css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyborg Gaming | Professional Gaming Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/public/css/landing.css">
 </head>
 <body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">CYBORG</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#games">Games</a>
+                <a href="/frontend/public/form/signin.html" class="btn-secondary">Sign In</a>
+                <a href="/frontend/public/form/signup.html" class="btn-primary">Get Started</a>
+            </div>
+        </nav>
 
-  <div class="cursor"></div>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Level Up Your Gaming Experience</h1>
+                <p>Join the ultimate gaming platform where players connect, compete, and create unforgettable moments. Track your stats, discover new games, and stream your gameplay to the world.</p>
+                <a href="/frontend/public/form/signup.html" class="btn-primary" style="font-size: 1.125rem; padding: 1rem 2rem;">
+                    <i class="fas fa-gamepad"></i> Start Playing Now
+                </a>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2.3M+</div>
+                        <div class="stat-label">Active Players</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1.2K+</div>
+                        <div class="stat-label">Live Streams</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Games Available</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-trophy"></i>
+                <h3>Competitive Gaming</h3>
+                <p>Track your progress and climb the leaderboards</p>
+            </div>
+        </section>
 
-  <header class="navbar">
-    <div class="logo">CYBER<span>STATS</span></div>
-    <nav class="nav-links">
-      <a href="/frontend/public/form/signin.html">Sign In</a>
-      <a href="/frontend/public/form/signup.html" class="nav-cta">Sign Up</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+        <section class="features" id="features">
+            <h2 class="section-title">Why Choose Cyborg?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Advanced Analytics</h3>
+                    <p>Track your performance with detailed stats and insights across all your favorite games.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-video"></i>
+                    <h3>Live Streaming</h3>
+                    <p>Go live instantly and build your audience with our integrated streaming platform.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Hub</h3>
+                    <p>Connect with fellow gamers, join tournaments, and share your best moments.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Clip Management</h3>
+                    <p>Save and share your best gaming moments with our clip management system.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>Real-time Updates</h3>
+                    <p>Get instant notifications about game updates, tournaments, and friend activities.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Platform</h3>
+                    <p>Your data is protected with enterprise-grade security and privacy controls.</p>
+                </div>
+            </div>
+        </section>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="glow-text">Track. Compare. Dominate.</h1>
-      <p class="subtitle">Real-time competitive gaming intelligence.</p>
+        <section class="games-showcase" id="games">
+            <h2 class="section-title">Popular Games</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <i class="fas fa-dragon"></i>
+                    <h4>Dota 2</h4>
+                    <div class="game-rating">★★★★★ 4.8</div>
+                    <div class="game-downloads">2.3M Downloads</div>
+                </div>
+                <div class="game-card">
+                    <i class="fas fa-fort-awesome"></i>
+                    <h4>Fortnite</h4>
+                    <div class="game-rating">★★★★☆ 4.7</div>
+                    <div class="game-downloads">3.1M Downloads</div>
+                </div>
+                <div class="game-card">
+                    <i class="fas fa-crosshairs"></i>
+                    <h4>CS:GO</h4>
+                    <div class="game-rating">★★★★★ 4.9</div>
+                    <div class="game-downloads">4.2M Downloads</div>
+                </div>
+                <div class="game-card">
+                    <i class="fas fa-robot"></i>
+                    <h4>Warface</h4>
+                    <div class="game-rating">★★★★☆ 4.6</div>
+                    <div class="game-downloads">1.8M Downloads</div>
+                </div>
+            </div>
+        </section>
 
-      <form id="searchForm" class="search-box">
-        <input type="text" id="username" placeholder="Enter Username..." required />
-        <button type="submit">Search</button>
-      </form>
+        <section class="cta-section">
+            <h2>Ready to Join the Community?</h2>
+            <p>Create your account today and start your gaming journey with Cyborg.</p>
+            <div class="cta-buttons">
+                <a href="/frontend/public/form/signup.html" class="btn-primary" style="padding: 1rem 2rem;">
+                    <i class="fas fa-user-plus"></i> Sign Up Free
+                </a>
+                <a href="/frontend/public/form/signin.html" class="btn-secondary" style="padding: 1rem 2rem;">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </a>
+            </div>
+        </section>
 
-      <div id="searchResult" class="search-result"></div>
+        <footer>
+            <p>&copy; 2024 Cyborg Gaming Platform. All rights reserved.</p>
+        </footer>
     </div>
 
-    <div class="grid-overlay"></div>
-  </section>
-
-  <section id="about" class="features">
-    <div class="feature-card">
-      <h3>Live Stats</h3>
-      <p>Real-time player performance analytics.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Leaderboards</h3>
-      <p>Global rankings across competitive games.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Advanced Metrics</h3>
-      <p>Deep performance breakdown & match history.</p>
-    </div>
-  </section>
-
-  <section id="contact" class="cta">
-    <h2>Ready to Level Up?</h2>
-    <button id="ctaButton">Enter Platform</button>
-  </section>
-
-  <footer>
-    <p>© 2026 CyberStats. All rights reserved.</p>
-  </footer>
-
-  <script src="/frontend/public/js/main.js"></script>
+    <script src="/frontend/public/js/landing.js"></script>
 </body>
 </html>

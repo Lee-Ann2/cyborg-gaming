@@ -14,6 +14,7 @@ class UserDatabase {
 
     async signup(userData) {
         try {
+            console.log('Signup request to:', `${this.API_URL}/signup`);
             const response = await fetch(`${this.API_URL}/signup`, {
                 method: 'POST',
                 headers: {
@@ -23,20 +24,22 @@ class UserDatabase {
             });
             
             const data = await response.json();
+            console.log('Signup response:', data);
             
             if (response.ok) {
                 return { success: true, message: data.message, userId: data.userId };
             } else {
-                return { success: false, message: data.error };
+                return { success: false, message: data.error || 'Signup failed' };
             }
         } catch (error) {
             console.error('Signup error:', error);
-            return { success: false, message: 'Network error. Please try again.' };
+            return { success: false, message: 'Cannot connect to server. Please make sure the backend is running on port 3000.' };
         }
     }
 
     async login(email, password) {
         try {
+            console.log('Login request to:', `${this.API_URL}/signin`);
             const response = await fetch(`${this.API_URL}/signin`, {
                 method: 'POST',
                 headers: {
@@ -46,29 +49,30 @@ class UserDatabase {
             });
             
             const data = await response.json();
+            console.log('Login response:', data);
             
-            if (response.ok) {
-                const { password: _, ...userWithoutPassword } = data.user;
-                localStorage.setItem(this.CURRENT_USER_KEY, JSON.stringify(userWithoutPassword));
+            if (response.ok && data.success) {
+                const userData = data.user;
+                localStorage.setItem(this.CURRENT_USER_KEY, JSON.stringify(userData));
                 
                 const users = this.getAllUsers();
-                const existingUserIndex = users.findIndex(u => u.id === data.user.id);
+                const existingUserIndex = users.findIndex(u => u.id === userData.id);
                 
                 if (existingUserIndex >= 0) {
-                    users[existingUserIndex] = { ...data.user, password: 'stored_in_db' };
+                    users[existingUserIndex] = userData;
                 } else {
-                    users.push({ ...data.user, password: 'stored_in_db' });
+                    users.push(userData);
                 }
                 
                 localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
                 
-                return { success: true, user: userWithoutPassword };
+                return { success: true, user: userData };
             } else {
-                return { success: false, message: data.error };
+                return { success: false, message: data.error || 'Login failed' };
             }
         } catch (error) {
             console.error('Login error:', error);
-            return { success: false, message: 'Network error. Please try again.' };
+            return { success: false, message: 'Cannot connect to server. Please make sure the backend is running on port 3000.' };
         }
     }
 
@@ -100,6 +104,7 @@ class UserDatabase {
         }
         
         localStorage.removeItem(this.CURRENT_USER_KEY);
+        window.location.href = '/frontend/public/index.html';
     }
 
     getCurrentUser() {
@@ -111,7 +116,7 @@ class UserDatabase {
         return !!this.getCurrentUser();
     }
 
-    async refreshUserProfile() {
+    async refreshProfile() {
         const currentUser = this.getCurrentUser();
         
         if (currentUser && currentUser.id) {
@@ -145,6 +150,7 @@ function showError(elementId, message) {
     
     if (element) {
         element.innerText = message;
+        element.style.display = 'block';
     }
     
     if (input) {
@@ -159,10 +165,12 @@ function clearError(elementId) {
     
     if (element) {
         element.innerText = '';
+        element.style.display = 'none';
     }
     
     if (input) {
         input.classList.remove('error-input');
+        input.classList.remove('success-input');
     }
 }
 
@@ -220,29 +228,33 @@ if (signinForm) {
     const emailInput = document.getElementById("signinEmail");
     const passwordInput = document.getElementById("signinPassword");
     
-    emailInput.addEventListener('input', () => {
-        if (emailInput.value.trim() && !validateEmail(emailInput.value.trim())) {
-            showError("signinEmailError", "Enter a valid email.");
-        } else if (emailInput.value.trim()) {
-            clearError("signinEmailError");
-            emailInput.classList.add('success-input');
-        } else {
-            clearError("signinEmailError");
-            emailInput.classList.remove('success-input');
-        }
-    });
+    if (emailInput) {
+        emailInput.addEventListener('input', () => {
+            if (emailInput.value.trim() && !validateEmail(emailInput.value.trim())) {
+                showError("signinEmailError", "Enter a valid email.");
+            } else if (emailInput.value.trim()) {
+                clearError("signinEmailError");
+                emailInput.classList.add('success-input');
+            } else {
+                clearError("signinEmailError");
+                emailInput.classList.remove('success-input');
+            }
+        });
+    }
     
-    passwordInput.addEventListener('input', () => {
-        if (passwordInput.value.trim() && passwordInput.value.trim().length < 6) {
-            showError("signinPasswordError", "Password must be at least 6 characters.");
-        } else if (passwordInput.value.trim()) {
-            clearError("signinPasswordError");
-            passwordInput.classList.add('success-input');
-        } else {
-            clearError("signinPasswordError");
-            passwordInput.classList.remove('success-input');
-        }
-    });
+    if (passwordInput) {
+        passwordInput.addEventListener('input', () => {
+            if (passwordInput.value.trim() && passwordInput.value.trim().length < 6) {
+                showError("signinPasswordError", "Password must be at least 6 characters.");
+            } else if (passwordInput.value.trim()) {
+                clearError("signinPasswordError");
+                passwordInput.classList.add('success-input');
+            } else {
+                clearError("signinPasswordError");
+                passwordInput.classList.remove('success-input');
+            }
+        });
+    }
     
     signinForm.addEventListener("submit", async function (e) {
         e.preventDefault();
@@ -278,7 +290,7 @@ if (signinForm) {
                 document.getElementById("signinError").style.display = 'none';
                 
                 setTimeout(() => {
-                    window.location.href = '/frontend/public/home.html';
+                    window.location.href = '/frontend/public/profile.html';
                 }, 1500);
             } else {
                 showErrorMessage("signinError", result.message);
@@ -295,72 +307,80 @@ if (signupForm) {
     const confirmInput = document.getElementById("signupConfirmPassword");
     const termsCheckbox = document.getElementById("agreeTerms");
     
-    usernameInput.addEventListener('input', () => {
-        if (usernameInput.value.length < 3 && usernameInput.value.length > 0) {
-            showError("signupUsernameError", "Username must be at least 3 characters.");
-            usernameInput.classList.add('error-input');
-        } else if (usernameInput.value.length >= 3) {
-            clearError("signupUsernameError");
-            usernameInput.classList.remove('error-input');
-            usernameInput.classList.add('success-input');
-        } else {
-            clearError("signupUsernameError");
-            usernameInput.classList.remove('error-input', 'success-input');
-        }
-    });
+    if (usernameInput) {
+        usernameInput.addEventListener('input', () => {
+            if (usernameInput.value.length < 3 && usernameInput.value.length > 0) {
+                showError("signupUsernameError", "Username must be at least 3 characters.");
+                usernameInput.classList.add('error-input');
+            } else if (usernameInput.value.length >= 3) {
+                clearError("signupUsernameError");
+                usernameInput.classList.remove('error-input');
+                usernameInput.classList.add('success-input');
+            } else {
+                clearError("signupUsernameError");
+                usernameInput.classList.remove('error-input', 'success-input');
+            }
+        });
+    }
     
-    emailInput.addEventListener('input', () => {
-        if (emailInput.value.trim() && !validateEmail(emailInput.value.trim())) {
-            showError("signupEmailError", "Enter a valid email.");
-            emailInput.classList.add('error-input');
-        } else if (validateEmail(emailInput.value.trim())) {
-            clearError("signupEmailError");
-            emailInput.classList.remove('error-input');
-            emailInput.classList.add('success-input');
-        } else {
-            clearError("signupEmailError");
-            emailInput.classList.remove('error-input', 'success-input');
-        }
-    });
+    if (emailInput) {
+        emailInput.addEventListener('input', () => {
+            if (emailInput.value.trim() && !validateEmail(emailInput.value.trim())) {
+                showError("signupEmailError", "Enter a valid email.");
+                emailInput.classList.add('error-input');
+            } else if (validateEmail(emailInput.value.trim())) {
+                clearError("signupEmailError");
+                emailInput.classList.remove('error-input');
+                emailInput.classList.add('success-input');
+            } else {
+                clearError("signupEmailError");
+                emailInput.classList.remove('error-input', 'success-input');
+            }
+        });
+    }
     
-    passwordInput.addEventListener('input', () => {
-        updatePasswordStrength(passwordInput.value);
-        
-        if (passwordInput.value.length < 6 && passwordInput.value.length > 0) {
-            showError("signupPasswordError", "Password must be at least 6 characters.");
-            passwordInput.classList.add('error-input');
-        } else if (passwordInput.value.length >= 6) {
-            clearError("signupPasswordError");
-            passwordInput.classList.remove('error-input');
-            passwordInput.classList.add('success-input');
-        } else {
-            clearError("signupPasswordError");
-            passwordInput.classList.remove('error-input', 'success-input');
-        }
-        
-        if (confirmInput.value && passwordInput.value !== confirmInput.value) {
-            showError("signupConfirmPasswordError", "Passwords do not match.");
-            confirmInput.classList.add('error-input');
-        } else if (confirmInput.value && passwordInput.value === confirmInput.value) {
-            clearError("signupConfirmPasswordError");
-            confirmInput.classList.remove('error-input');
-            confirmInput.classList.add('success-input');
-        }
-    });
+    if (passwordInput) {
+        passwordInput.addEventListener('input', () => {
+            updatePasswordStrength(passwordInput.value);
+            
+            if (passwordInput.value.length < 6 && passwordInput.value.length > 0) {
+                showError("signupPasswordError", "Password must be at least 6 characters.");
+                passwordInput.classList.add('error-input');
+            } else if (passwordInput.value.length >= 6) {
+                clearError("signupPasswordError");
+                passwordInput.classList.remove('error-input');
+                passwordInput.classList.add('success-input');
+            } else {
+                clearError("signupPasswordError");
+                passwordInput.classList.remove('error-input', 'success-input');
+            }
+            
+            if (confirmInput && confirmInput.value && passwordInput.value !== confirmInput.value) {
+                showError("signupConfirmPasswordError", "Passwords do not match.");
+                confirmInput.classList.add('error-input');
+            } else if (confirmInput && confirmInput.value && passwordInput.value === confirmInput.value) {
+                clearError("signupConfirmPasswordError");
+                confirmInput.classList.remove('error-input');
+                confirmInput.classList.add('success-input');
+            }
+        });
+    }
     
-    confirmInput.addEventListener('input', () => {
-        if (passwordInput.value !== confirmInput.value) {
-            showError("signupConfirmPasswordError", "Passwords do not match.");
-            confirmInput.classList.add('error-input');
-        } else if (confirmInput.value && passwordInput.value === confirmInput.value) {
-            clearError("signupConfirmPasswordError");
-            confirmInput.classList.remove('error-input');
-            confirmInput.classList.add('success-input');
-        } else {
-            clearError("signupConfirmPasswordError");
-            confirmInput.classList.remove('error-input', 'success-input');
-        }
-    });
+    if (confirmInput) {
+        confirmInput.addEventListener('input', () => {
+            if (passwordInput.value !== confirmInput.value) {
+                showError("signupConfirmPasswordError", "Passwords do not match.");
+                confirmInput.classList.add('error-input');
+            } else if (confirmInput.value && passwordInput.value === confirmInput.value) {
+                clearError("signupConfirmPasswordError");
+                confirmInput.classList.remove('error-input');
+                confirmInput.classList.add('success-input');
+            } else {
+                clearError("signupConfirmPasswordError");
+                confirmInput.classList.remove('error-input', 'success-input');
+            }
+        });
+    }
     
     signupForm.addEventListener("submit", async function (e) {
         e.preventDefault();
@@ -369,7 +389,7 @@ if (signupForm) {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
         const confirmPassword = confirmInput.value.trim();
-        const agreeTerms = termsCheckbox?.checked || false;
+        const agreeTerms = termsCheckbox ? termsCheckbox.checked : false;
 
         let valid = true;
 
@@ -377,24 +397,18 @@ if (signupForm) {
             showError("signupUsernameError", "Username must be at least 3 characters.");
             usernameInput.classList.add('error-input');
             valid = false;
-        } else if (db.findUserByUsername(username)) {
-            showError("signupUsernameError", "Username already taken.");
-            usernameInput.classList.add('error-input');
-            valid = false;
         } else {
             clearError("signupUsernameError");
+            usernameInput.classList.remove('error-input');
         }
 
         if (!validateEmail(email)) {
             showError("signupEmailError", "Enter a valid email.");
             emailInput.classList.add('error-input');
             valid = false;
-        } else if (db.findUserByEmail(email)) {
-            showError("signupEmailError", "Email already registered.");
-            emailInput.classList.add('error-input');
-            valid = false;
         } else {
             clearError("signupEmailError");
+            emailInput.classList.remove('error-input');
         }
 
         if (password.length < 6) {
@@ -403,6 +417,7 @@ if (signupForm) {
             valid = false;
         } else {
             clearError("signupPasswordError");
+            passwordInput.classList.remove('error-input');
         }
 
         if (password !== confirmPassword) {
@@ -411,6 +426,7 @@ if (signupForm) {
             valid = false;
         } else {
             clearError("signupConfirmPasswordError");
+            confirmInput.classList.remove('error-input');
         }
 
         if (!agreeTerms) {
@@ -445,5 +461,5 @@ window.auth = {
     logout: () => db.logout(),
     getCurrentUser: () => db.getCurrentUser(),
     isLoggedIn: () => db.isLoggedIn(),
-    refreshProfile: () => db.refreshUserProfile()
+    refreshProfile: () => db.refreshProfile()
 };

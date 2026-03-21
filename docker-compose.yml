@@ -12,13 +12,4 @@ services:
       - NODE_ENV=production
       - PORT=3000
     restart: unless-stopped
-
-  frontend:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./frontend/public:/usr/share/nginx/html
-    depends_on:
-      - backend
-    restart: unless-stopped
+    

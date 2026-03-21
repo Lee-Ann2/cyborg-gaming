@@ -7,33 +7,47 @@ document.addEventListener('DOMContentLoaded', async function() {
         return;
     }
     
-    await window.auth.refreshProfile();
-    const updatedUser = window.auth.getCurrentUser();
+    const updatedUser = await window.auth.refreshProfile();
     
     const displayNameElement = document.getElementById('displayUsername');
     const profileNameElement = document.getElementById('profileUsername');
+    const profileBtnName = document.querySelector('.profile-icon span:first-of-type');
     
     if (displayNameElement) {
-        displayNameElement.textContent = updatedUser.username;
+        displayNameElement.textContent = updatedUser.username || updatedUser.gamertag;
     }
     
     if (profileNameElement) {
-        profileNameElement.textContent = updatedUser.username;
+        profileNameElement.textContent = updatedUser.username || updatedUser.gamertag;
     }
     
-    if (updatedUser.stats) {
-        const dota2Item = document.querySelector('[data-game="dota2"] .lib-col strong');
-        const fortniteItem = document.querySelector('[data-game="fortnite"] .lib-col strong');
-        const csgoItem = document.querySelector('[data-game="csgo"] .lib-col strong');
+    if (profileBtnName) {
+        profileBtnName.textContent = updatedUser.username || updatedUser.gamertag;
+    }
+    
+    if (updatedUser.stats && updatedUser.stats.length > 0) {
+        const dota2Item = document.querySelector('[data-game="dota2"] .lib-col:nth-child(3) strong');
+        const fortniteItem = document.querySelector('[data-game="fortnite"] .lib-col:nth-child(3) strong');
+        const csgoItem = document.querySelector('[data-game="csgo"] .lib-col:nth-child(3) strong');
         
-        if (dota2Item && updatedUser.stats[0]) {
-            dota2Item.textContent = `${updatedUser.stats[0].hours_played}H 22Mins`;
+        const dota2Stat = updatedUser.stats.find(s => s.game_name === 'Dota2');
+        const fortniteStat = updatedUser.stats.find(s => s.game_name === 'Fortnite');
+        const csgoStat = updatedUser.stats.find(s => s.game_name === 'CS-GO');
+        
+        if (dota2Item && dota2Stat) {
+            const hours = dota2Stat.hours_played;
+            const mins = Math.floor((hours % 1) * 60);
+            dota2Item.textContent = `${Math.floor(hours)}H ${mins}Mins`;
         }
-        if (fortniteItem && updatedUser.stats[1]) {
-            fortniteItem.textContent = `${updatedUser.stats[1].hours_played}H 22Mins`;
+        if (fortniteItem && fortniteStat) {
+            const hours = fortniteStat.hours_played;
+            const mins = Math.floor((hours % 1) * 60);
+            fortniteItem.textContent = `${Math.floor(hours)}H ${mins}Mins`;
         }
-        if (csgoItem && updatedUser.stats[2]) {
-            csgoItem.textContent = `${updatedUser.stats[2].hours_played}H 46Mins`;
+        if (csgoItem && csgoStat) {
+            const hours = csgoStat.hours_played;
+            const mins = Math.floor((hours % 1) * 60);
+            csgoItem.textContent = `${Math.floor(hours)}H ${mins}Mins`;
         }
     }
     
@@ -68,6 +82,21 @@ document.addEventListener('DOMContentLoaded', async function() {
         clipsCountStat.textContent = updatedUser.clips_count || '08';
     }
     
+    const statusInfo = document.querySelector('.status-info p');
+    if (statusInfo) {
+        const status = updatedUser.status || 'offline';
+        if (status === 'online') {
+            statusInfo.innerHTML = '<i class="fas fa-circle" style="color: #4ade80;"></i> Online';
+        } else {
+            statusInfo.innerHTML = '<i class="fas fa-circle offline-dot"></i> Offline';
+        }
+    }
+    
+    const clipsCountSpan = document.querySelector('.clips-count');
+    if (clipsCountSpan && updatedUser.clips) {
+        clipsCountSpan.textContent = `${updatedUser.clips.length} clips`;
+    }
+    
     console.log('Logged in as:', updatedUser);
     
     const navItems = document.querySelectorAll('.nav-links a');
@@ -97,11 +126,13 @@ document.addEventListener('DOMContentLoaded', async function() {
                 profileBtn.style.position = 'relative';
                 profileBtn.appendChild(dropdown);
                 
-                document.getElementById('logoutBtn').addEventListener('click', async function(e) {
-                    e.preventDefault();
-                    await window.auth?.logout();
-                    window.location.href = '/frontend/public/form/signin.html';
-                });
+                const logoutBtn = document.getElementById('logoutBtn');
+                if (logoutBtn) {
+                    logoutBtn.addEventListener('click', async function(e) {
+                        e.preventDefault();
+                        await window.auth?.logout();
+                    });
+                }
             }
             
             dropdown.classList.toggle('show');
@@ -146,7 +177,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     
     const clipCards = document.querySelectorAll('.clip-card');
-    clipCards.forEach((card, index) => {
+    clipCards.forEach((card) => {
         card.addEventListener('click', function() {
             const clipName = this.querySelector('.clip-number').textContent;
             window.location.href = `/frontend/public/details.html?clip=${encodeURIComponent(clipName)}`;
@@ -223,13 +254,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     const footer = document.querySelector('.cyborg-footer p');
     if (footer) {
         const year = new Date().getFullYear();
-        footer.innerHTML = `Copyright @ ${year} Cyborg Gaming Company. All rights reserved. Design: TemplateMo`;
+        footer.innerHTML = `Copyright @ ${year} Cyborg Gaming Company. All rights reserved.`;
     }
     
     const avatarLarge = document.querySelector('.avatar-large i');
     if (avatarLarge) {
         avatarLarge.addEventListener('click', function() {
-            alert('✨ Change profile picture? (demo)');
+            alert('Change profile picture feature coming soon!');
         });
     }
 });
