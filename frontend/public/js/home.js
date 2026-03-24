@@ -86,8 +86,8 @@ async function loadPopularGames() {
                 gameCard.innerHTML = `
                     <div class="card-icon">
                         ${game.background_image ? 
-                            `<img src="${game.background_image}" style="width:60px;height:60px;border-radius:12px;object-fit:cover;">` : 
-                            `<i class="fas fa-gamepad"></i>`
+                            `<img src="${game.background_image}" style="width:100%; height:140px; border-radius:12px; object-fit:cover; margin-bottom:12px;">` : 
+                            `<i class="fas fa-gamepad" style="font-size: 3rem; margin-bottom: 12px;"></i>`
                         }
                     </div>
                     <h3>${game.name.length > 15 ? game.name.substring(0, 15) + '...' : game.name}</h3>
