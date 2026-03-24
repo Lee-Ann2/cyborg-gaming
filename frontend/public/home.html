@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyborg | gaming dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/frontend/public/css/home.css">
+    <link rel="stylesheet" href="./css/home.css">
 </head>
 <body>
     <div class="cyborg-container">
         <nav class="navbar">
             <div class="logo">CYBORG</div>
             <div class="nav-links">
-                <a href="/frontend/public/home.html" class="active-nav">Home</a>
-                <a href="/frontend/public/browse.html">Browse</a>
-                <a href="/frontend/public/details.html">Details</a>
-                <a href="/frontend/public/streams.html">Streams</a>
-                <a href="/frontend/public/profile.html">Profile</a>
+                <a href="home.html" class="active-nav">Home</a>
+                <a href="browse.html">Browse</a>
+                <a href="details.html">Details</a>
+                <a href="streams.html">Streams</a>
+                <a href="profile.html">Profile</a>
             </div>
-            <div class="profile-icon">
+            <div class="profile-icon" id="profileBtn">
                 <i class="fas fa-user-astronaut"></i>
-                <span>Gamer_4L</span>
+                <span id="navUsername">Loading...</span>
                 <i class="fas fa-chevron-down"></i>
             </div>
         </nav>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="lib-col">
                     <span class="small-meta">Hours Played</span>
-                    <strong>634H 22Mins</strong>
+                    <strong id="dota2Hours">634H 22Mins</strong>
                 </div>
                 <div class="lib-col">
                     <span class="small-meta">Currently</span>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="lib-col">
                     <span class="small-meta">Hours Played</span>
-                    <strong>740H 52Mins</strong>
+                    <strong id="fortniteHours">740H 52Mins</strong>
                 </div>
                 <div class="lib-col">
                     <span class="small-meta">Currently</span>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="lib-col">
                     <span class="small-meta">Hours Played</span>
-                    <strong>892H 14Mins</strong>
+                    <strong id="csgoHours">892H 14Mins</strong>
                 </div>
                 <div class="lib-col">
                     <span class="small-meta">Currently</span>
@@ -150,6 +150,6 @@
         <div class="foot-note">© CYBORG • interactive dashboard</div>
     </div>
 
-    <script src="/frontend/public/js/home.js"></script>
+    <script src="./js/home.js"></script>
 </body>
 </html>

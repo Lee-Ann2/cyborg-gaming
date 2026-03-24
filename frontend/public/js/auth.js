@@ -223,6 +223,10 @@ function updatePasswordStrength(password) {
     }
 }
 
+function redirectToHome() {
+    window.location.href = '../home.html';
+}
+
 const signinForm = document.getElementById("signinForm");
 if (signinForm) {
     const emailInput = document.getElementById("signinEmail");
@@ -286,12 +290,12 @@ if (signinForm) {
             const result = await db.login(email, password);
             
             if (result.success) {
-                showSuccess("signinSuccess", "Login successful! Redirecting...");
+                showSuccess("signinSuccess", "Login successful! Redirecting to home page...");
                 document.getElementById("signinError").style.display = 'none';
                 
                 setTimeout(() => {
-                    window.location.href = '/frontend/public/profile.html';
-                }, 1500);
+                    redirectToHome();
+                }, 3000);
             } else {
                 showErrorMessage("signinError", result.message);
             }
@@ -443,12 +447,12 @@ if (signupForm) {
             });
             
             if (result.success) {
-                showSuccess("signupSuccess", "Account created successfully! Redirecting to sign in...");
+                showSuccess("signupSuccess", "Account created successfully! Redirecting to home page...");
                 document.getElementById("signupError").style.display = 'none';
                 
                 setTimeout(() => {
-                    window.location.href = 'signin.html';
-                }, 2000);
+                    redirectToHome();
+                }, 3000);
             } else {
                 showErrorMessage("signupError", result.message);
             }

@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
     gap: 1rem;
 }
@@ -47,11 +47,10 @@ body {
     gap: 2rem;
     font-weight: 500;
     font-size: 1rem;
-    background: #3a3452;
+    background: #322f42;
     padding: 0.6rem 1.6rem;
     border-radius: 60px;
-    box-shadow: 0 0 15px #c999ff66;
-    border: 1px solid #9570c9;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
 }
 
 .nav-links a {
@@ -76,6 +75,14 @@ body {
     gap: 8px;
     border: 1px solid #9570c9;
     box-shadow: 0 0 15px #c999ff66;
+    cursor: pointer;
+    transition: 0.2s;
+    position: relative;
+}
+
+.profile-icon:hover {
+    background: #4e4080;
+    border-color: #cfa2ff;
 }
 
 .profile-icon i {
@@ -92,6 +99,38 @@ body {
 .profile-icon .fa-chevron-down {
     font-size: 0.8rem;
     color: #caa2ff;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #2a2540;
+    border: 1px solid #8a67b5;
+    border-radius: 12px;
+    min-width: 160px;
+    margin-top: 8px;
+    z-index: 1000;
+    display: none;
+}
+
+.profile-dropdown.show {
+    display: block;
+}
+
+.profile-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    color: #f0eaff;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.profile-dropdown a:hover {
+    background: #4e4080;
+    border-radius: 12px;
 }
 
 .welcome-block {
@@ -175,10 +214,6 @@ body {
     cursor: default;
 }
 
-.section-header i {
-    margin-right: 6px;
-}
-
 .games-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -205,11 +240,6 @@ body {
     font-size: 2.8rem;
     margin-bottom: 0.8rem;
 }
-
-.card-icon .fa-cube { color: #c2f0c2; }
-.card-icon .fa-dove { color: #cfb8ff; }
-.card-icon .fa-crosshairs { color: #ffb999; }
-.card-icon .fa-dragon { color: #ffcf9e; }
 
 .game-card h3 {
     font-size: 1.6rem;
@@ -269,11 +299,6 @@ body {
 .stat-item i {
     font-size: 1.2rem;
 }
-
-.stat-item .fa-medal { color: #ffe070; }
-.stat-item .fa-gamepad { color: #ca97ff; }
-.stat-item .fa-crown { color: #ffcf8a; }
-.stat-item .fa-ghost { color: #e2baff; }
 
 .stat-item span:last-child {
     margin-left: auto;
@@ -405,13 +430,27 @@ body {
 }
 
 @media (max-width: 1000px) {
-    .games-grid { grid-template-columns: repeat(2,1fr); }
-    .library-item { flex-direction: column; align-items: flex-start; }
-    .game-avatar { width: auto; }
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .library-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .game-avatar {
+        width: auto;
+    }
 }
 
 @media (max-width: 650px) {
-    .navbar { flex-direction: column; align-items: stretch; }
-    .welcome-title { font-size: 2.5rem; }
-    .welcome-title span { font-size: 2.2rem; }
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+    .welcome-title span {
+        font-size: 2.2rem;
+    }
 }
