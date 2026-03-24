@@ -1,9 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
 
 const app = express();
 const PORT = 3000;
@@ -101,6 +101,59 @@ app.post('/api/signin', async (req, res) => {
             }
         });
     });
+});
+
+app.get('/api/popular-games', async (req, res) => {
+    const RAWG_API_KEY = process.env.RAWG_API_KEY;
+    
+    if (!RAWG_API_KEY) {
+        return res.status(500).json({ success: false, error: 'API key not configured' });
+    }
+    
+    try {
+        const response = await fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&ordering=-rating&page_size=8`);
+        const data = await response.json();
+        res.json({ success: true, games: data.results });
+    } catch (error) {
+        console.error('Error fetching games:', error);
+        res.status(500).json({ success: false, error: 'Failed to fetch games' });
+    }
+});
+
+app.get('/api/games/search/:query', async (req, res) => {
+    const RAWG_API_KEY = process.env.RAWG_API_KEY;
+    const query = req.params.query;
+    
+    if (!RAWG_API_KEY) {
+        return res.status(500).json({ success: false, error: 'API key not configured' });
+    }
+    
+    try {
+        const response = await fetch(`https://api.rawg.io/api/games?key=${RAWG_API_KEY}&search=${encodeURIComponent(query)}&page_size=20`);
+        const data = await response.json();
+        res.json({ success: true, games: data.results });
+    } catch (error) {
+        console.error('Error searching games:', error);
+        res.status(500).json({ success: false, error: 'Failed to search games' });
+    }
+});
+
+app.get('/api/games/:id', async (req, res) => {
+    const RAWG_API_KEY = process.env.RAWG_API_KEY;
+    const gameId = req.params.id;
+    
+    if (!RAWG_API_KEY) {
+        return res.status(500).json({ success: false, error: 'API key not configured' });
+    }
+    
+    try {
+        const response = await fetch(`https://api.rawg.io/api/games/${gameId}?key=${RAWG_API_KEY}`);
+        const data = await response.json();
+        res.json({ success: true, game: data });
+    } catch (error) {
+        console.error('Error fetching game details:', error);
+        res.status(500).json({ success: false, error: 'Failed to fetch game details' });
+    }
 });
 
 app.listen(PORT, () => {

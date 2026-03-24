@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     const userJson = localStorage.getItem('cyborg_current_user');
     
     if (!userJson) {
@@ -71,6 +71,110 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+    
+    if (searchQuery) {
+        const featuredHeader = document.querySelector('.featured-header h2');
+        if (featuredHeader) {
+            featuredHeader.innerHTML = `Search Results for "${searchQuery}"`;
+        }
+        
+        const searchResults = await searchGames(searchQuery, 12);
+        const featuredGrid = document.querySelector('.featured-grid');
+        
+        if (featuredGrid && searchResults.length > 0) {
+            featuredGrid.innerHTML = '';
+            searchResults.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'featured-card';
+                card.setAttribute('data-game', game.name);
+                card.setAttribute('data-id', game.id);
+                card.innerHTML = `
+                    <div class="feat-icon">
+                        ${game.background_image ? 
+                            `<img src="${game.background_image}" style="width:50px;height:50px;border-radius:12px;object-fit:cover;">` : 
+                            `<i class="fas fa-gamepad"></i>`
+                        }
+                    </div>
+                    <div>
+                        <h3>${game.name.length > 20 ? game.name.substring(0, 20) + '...' : game.name} <span class="game-cat">${game.released || '2024'}</span></h3>
+                        <div class="rating-downloads">★ ${game.rating} <span>⭐</span></div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    window.location.href = `details.html?game=${encodeURIComponent(game.name)}&id=${game.id}`;
+                });
+                
+                featuredGrid.appendChild(card);
+            });
+        } else {
+            featuredGrid.innerHTML = '<div style="text-align:center; padding:2rem; color:#ff8a8a;">No games found for your search.</div>';
+        }
+    } else {
+        const featuredGames = await getPopularGames(6);
+        const featuredGrid = document.querySelector('.featured-grid');
+        
+        if (featuredGrid && featuredGames.length > 0) {
+            featuredGrid.innerHTML = '';
+            featuredGames.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'featured-card';
+                card.setAttribute('data-game', game.name);
+                card.setAttribute('data-id', game.id);
+                card.innerHTML = `
+                    <div class="feat-icon">
+                        ${game.background_image ? 
+                            `<img src="${game.background_image}" style="width:50px;height:50px;border-radius:12px;object-fit:cover;">` : 
+                            `<i class="fas fa-gamepad"></i>`
+                        }
+                    </div>
+                    <div>
+                        <h3>${game.name.length > 20 ? game.name.substring(0, 20) + '...' : game.name} <span class="game-cat">${game.genres && game.genres[0] ? game.genres[0] : 'Game'}</span></h3>
+                        <div class="rating-downloads">★ ${game.rating} <span>⭐ ${game.rating_count || '0'}</span></div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => {
+                    window.location.href = `details.html?game=${encodeURIComponent(game.name)}&id=${game.id}`;
+                });
+                
+                featuredGrid.appendChild(card);
+            });
+        }
+        
+        const miniGames = await getPopularGames(3);
+        const miniGamesRow = document.querySelector('.mini-games-row');
+        
+        if (miniGamesRow && miniGames.length > 0) {
+            miniGamesRow.innerHTML = '';
+            miniGames.forEach(game => {
+                const gameItem = document.createElement('div');
+                gameItem.className = 'mini-game-item';
+                gameItem.setAttribute('data-game', game.name);
+                gameItem.setAttribute('data-id', game.id);
+                gameItem.innerHTML = `
+                    ${game.background_image ? 
+                        `<img src="${game.background_image}" style="width:40px;height:40px;border-radius:8px;object-fit:cover;">` : 
+                        `<i class="fas fa-gamepad"></i>`
+                    }
+                    <div class="mini-details">
+                        <span class="mini-title">${game.name.length > 15 ? game.name.substring(0, 15) + '...' : game.name}</span>
+                        <span class="mini-rating">★${game.rating}</span>
+                    </div>
+                    <div class="mini-dl">${game.rating_count || '0'} <i class="fas fa-star"></i></div>
+                `;
+                
+                gameItem.addEventListener('click', () => {
+                    window.location.href = `details.html?game=${encodeURIComponent(game.name)}&id=${game.id}`;
+                });
+                
+                miniGamesRow.appendChild(gameItem);
+            });
+        }
+    }
+    
     const goToProfile = document.getElementById('goToProfile');
     if (goToProfile) {
         goToProfile.addEventListener('click', function() {
@@ -90,22 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', function() {
             const streamer = this.getAttribute('data-streamer');
             window.location.href = `streams.html?streamer=${encodeURIComponent(streamer)}`;
-        });
-    });
-    
-    const featuredCards = document.querySelectorAll('.featured-card');
-    featuredCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const game = this.getAttribute('data-game');
-            window.location.href = `details.html?game=${encodeURIComponent(game)}`;
-        });
-    });
-    
-    const miniGames = document.querySelectorAll('.mini-game-item');
-    miniGames.forEach(game => {
-        game.addEventListener('click', function() {
-            const gameName = this.getAttribute('data-game');
-            window.location.href = `details.html?game=${encodeURIComponent(gameName)}`;
         });
     });
     
