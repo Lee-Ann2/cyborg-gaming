@@ -31,21 +31,10 @@ if (profileBtn) {
         let dropdown = document.getElementById('profileDropdown');
         
         if (!dropdown) {
-            const currentUser = JSON.parse(localStorage.getItem('cyborg_current_user'));
-            const currentUsername = currentUser ? (currentUser.username || currentUser.gamertag) : 'User';
-            
             dropdown = document.createElement('div');
             dropdown.id = 'profileDropdown';
             dropdown.className = 'profile-dropdown';
             dropdown.innerHTML = `
-                <div class="dropdown-user">
-                    <i class="fas fa-user-circle"></i>
-                    <span>${currentUsername}</span>
-                </div>
-                <div class="dropdown-divider"></div>
-                <a href="profile.html">
-                    <i class="fas fa-user"></i> My Profile
-                </a>
                 <a href="#" id="logoutBtn">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
@@ -54,7 +43,7 @@ if (profileBtn) {
             
             const logoutBtn = document.getElementById('logoutBtn');
             if (logoutBtn) {
-                logoutBtn.addEventListener('click', function(e) {
+                logoutBtn.addEventListener('click', async function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     localStorage.removeItem('cyborg_current_user');
