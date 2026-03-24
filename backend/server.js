@@ -103,6 +103,33 @@ app.post('/api/signin', async (req, res) => {
     });
 });
 
+app.get('/api/games', async (req, res) => {
+    const RAWG_API_KEY = process.env.RAWG_API_KEY;
+    const { platform, platforms, page_size = 20 } = req.query;
+    
+    if (!RAWG_API_KEY) {
+        return res.status(500).json({ success: false, error: 'API key not configured' });
+    }
+    
+    let url = `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&page_size=${page_size}`;
+    
+    if (platform) {
+        url += `&platforms=${platform}`;
+    }
+    if (platforms) {
+        url += `&platforms=${platforms}`;
+    }
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        res.json({ success: true, games: data.results });
+    } catch (error) {
+        console.error('Error fetching games:', error);
+        res.status(500).json({ success: false, error: 'Failed to fetch games' });
+    }
+});
+
 app.get('/api/popular-games', async (req, res) => {
     const RAWG_API_KEY = process.env.RAWG_API_KEY;
     
