@@ -6,48 +6,67 @@ if (!userJson) {
     const user = JSON.parse(userJson);
     const username = user.username || user.gamertag;
     
-    document.getElementById('navUsername').innerText = username;
-    document.querySelector('.welcome-tag').innerHTML = `Welcome back, ${username}!`;
-    document.querySelector('.foot-note').innerHTML = `© ${new Date().getFullYear()} CYBORG • Welcome ${username}`;
+    const navUsername = document.getElementById('navUsername');
+    if (navUsername) {
+        navUsername.innerText = username;
+    }
+    
+    const welcomeTag = document.querySelector('.welcome-tag');
+    if (welcomeTag) {
+        welcomeTag.innerHTML = `Welcome back, ${username}!`;
+    }
+    
+    const footNote = document.querySelector('.foot-note');
+    if (footNote) {
+        footNote.innerHTML = `© ${new Date().getFullYear()} CYBORG • Welcome ${username}`;
+    }
 }
 
 const profileBtn = document.getElementById('profileBtn');
 
-profileBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    
-    let dropdown = document.getElementById('profileDropdown');
-    
-    if (!dropdown) {
-        dropdown = document.createElement('div');
-        dropdown.id = 'profileDropdown';
-        dropdown.className = 'profile-dropdown';
-        dropdown.innerHTML = `
-            <div class="dropdown-user">
-                <i class="fas fa-user-circle"></i>
-                <span>${document.getElementById('navUsername').innerText}</span>
-            </div>
-            <div class="dropdown-divider"></div>
-            <a href="profile.html">
-                <i class="fas fa-user"></i> My Profile
-            </a>
-            <a href="#" id="logoutBtn">
-                <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
-        `;
-        this.appendChild(dropdown);
+if (profileBtn) {
+    profileBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
         
-        document.getElementById('logoutBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            localStorage.removeItem('cyborg_current_user');
-            localStorage.removeItem('cyborg_token');
-            window.location.href = '../index.html';
-        });
-    }
-    
-    dropdown.classList.toggle('show');
-});
+        let dropdown = document.getElementById('profileDropdown');
+        
+        if (!dropdown) {
+            const currentUser = JSON.parse(localStorage.getItem('cyborg_current_user'));
+            const currentUsername = currentUser ? (currentUser.username || currentUser.gamertag) : 'User';
+            
+            dropdown = document.createElement('div');
+            dropdown.id = 'profileDropdown';
+            dropdown.className = 'profile-dropdown';
+            dropdown.innerHTML = `
+                <div class="dropdown-user">
+                    <i class="fas fa-user-circle"></i>
+                    <span>${currentUsername}</span>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="profile.html">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+                <a href="#" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            `;
+            this.appendChild(dropdown);
+            
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    localStorage.removeItem('cyborg_current_user');
+                    localStorage.removeItem('cyborg_token');
+                    window.location.href = '../index.html';
+                });
+            }
+        }
+        
+        dropdown.classList.toggle('show');
+    });
+}
 
 document.addEventListener('click', function() {
     const dropdown = document.getElementById('profileDropdown');
@@ -70,6 +89,9 @@ document.querySelectorAll('.library-item').forEach(item => {
     });
 });
 
-document.getElementById('libraryViewBtn')?.addEventListener('click', () => {
-    window.location.href = 'profile.html';
-});
+const libraryViewBtn = document.getElementById('libraryViewBtn');
+if (libraryViewBtn) {
+    libraryViewBtn.addEventListener('click', () => {
+        window.location.href = 'profile.html';
+    });
+}

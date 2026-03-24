@@ -51,25 +51,33 @@ document.getElementById('signupForm').addEventListener('submit', async function(
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
     
-    const response = await fetch('http://localhost:3000/api/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            username: username,
-            email: email,
-            password: password,
-            gamertag: username
-        })
-    });
-    
-    const data = await response.json();
-    
-    if (response.ok && data.success) {
-        window.location = 'signin.html';
-    } else {
-        document.getElementById('signupError').innerText = data.error || 'Signup failed';
+    try {
+        const response = await fetch('http://localhost:3000/api/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password,
+                gamertag: username
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.success) {
+            localStorage.setItem('cyborg_temp_username', username);
+            window.location = 'signin.html';
+        } else {
+            document.getElementById('signupError').innerText = data.error || 'Signup failed';
+            document.getElementById('signupError').style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
+        }
+    } catch (error) {
+        document.getElementById('signupError').innerText = 'Cannot connect to server. Make sure backend is running on port 3000';
         document.getElementById('signupError').style.display = 'block';
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';

@@ -110,14 +110,28 @@ if (signinForm) {
                 const data = await response.json();
                 
                 if (response.ok && data.success) {
+                    const userData = {
+                        id: data.user.id,
+                        username: data.user.username,
+                        email: data.user.email,
+                        gamertag: data.user.gamertag
+                    };
                     localStorage.setItem('cyborg_token', data.token);
-                    localStorage.setItem('cyborg_current_user', JSON.stringify(data.user));
+                    localStorage.setItem('cyborg_current_user', JSON.stringify(userData));
                     redirectToHome();
                 } else {
-                    showError("signinError", data.error || 'Login failed');
+                    const errorElement = document.getElementById("signinError");
+                    if (errorElement) {
+                        errorElement.innerText = data.error || 'Login failed';
+                        errorElement.style.display = 'block';
+                    }
                 }
             } catch (error) {
-                showError("signinError", 'Cannot connect to server. Please make sure the backend is running on port 3000.');
+                const errorElement = document.getElementById("signinError");
+                if (errorElement) {
+                    errorElement.innerText = 'Cannot connect to server. Please make sure the backend is running on port 3000.';
+                    errorElement.style.display = 'block';
+                }
             }
         }
     });
