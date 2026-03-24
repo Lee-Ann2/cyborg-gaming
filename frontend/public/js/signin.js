@@ -35,26 +35,6 @@ function clearError(elementId) {
     }
 }
 
-function showSuccess(elementId, message) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.innerText = message;
-        element.style.display = 'block';
-        
-        setTimeout(() => {
-            element.style.display = 'none';
-        }, 3000);
-    }
-}
-
-function showErrorMessage(elementId, message) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.innerText = message;
-        element.style.display = 'block';
-    }
-}
-
 function redirectToHome() {
     window.location.href = '../home.html';
 }
@@ -132,34 +112,13 @@ if (signinForm) {
                 if (response.ok && data.success) {
                     localStorage.setItem('cyborg_token', data.token);
                     localStorage.setItem('cyborg_current_user', JSON.stringify(data.user));
-                    
-                    showSuccess("signinSuccess", "Login successful! Redirecting to home page...");
-                    document.getElementById("signinError").style.display = 'none';
-                    
-                    setTimeout(() => {
-                        redirectToHome();
-                    }, 2000);
+                    redirectToHome();
                 } else {
-                    showErrorMessage("signinError", data.error || 'Login failed');
+                    showError("signinError", data.error || 'Login failed');
                 }
             } catch (error) {
-                console.error('Login error:', error);
-                showErrorMessage("signinError", 'Cannot connect to server. Please make sure the backend is running on port 3000.');
+                showError("signinError", 'Cannot connect to server. Please make sure the backend is running on port 3000.');
             }
-        }
-    });
-}
-
-const rememberCheckbox = document.getElementById('rememberMe');
-if (rememberCheckbox && localStorage.getItem('remembered_email')) {
-    document.getElementById('signinEmail').value = localStorage.getItem('remembered_email');
-    rememberCheckbox.checked = true;
-}
-
-if (rememberCheckbox) {
-    rememberCheckbox.addEventListener('change', function() {
-        if (!this.checked) {
-            localStorage.removeItem('remembered_email');
         }
     });
 }

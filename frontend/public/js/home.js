@@ -11,31 +11,49 @@ if (!userJson) {
     document.querySelector('.foot-note').innerHTML = `© ${new Date().getFullYear()} CYBORG • Welcome ${username}`;
 }
 
-document.getElementById('profileBtn')?.addEventListener('click', function(e) {
+const profileBtn = document.getElementById('profileBtn');
+
+profileBtn.addEventListener('click', function(e) {
     e.stopPropagation();
+    
     let dropdown = document.getElementById('profileDropdown');
+    
     if (!dropdown) {
         dropdown = document.createElement('div');
         dropdown.id = 'profileDropdown';
         dropdown.className = 'profile-dropdown';
         dropdown.innerHTML = `
-            <a href="profile.html"><i class="fas fa-user"></i> My Profile</a>
-            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <div class="dropdown-user">
+                <i class="fas fa-user-circle"></i>
+                <span>${document.getElementById('navUsername').innerText}</span>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a href="profile.html">
+                <i class="fas fa-user"></i> My Profile
+            </a>
+            <a href="#" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
         `;
         this.appendChild(dropdown);
-        document.getElementById('logoutBtn').onclick = (e) => {
+        
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             localStorage.removeItem('cyborg_current_user');
             localStorage.removeItem('cyborg_token');
             window.location.href = '../index.html';
-        };
+        });
     }
+    
     dropdown.classList.toggle('show');
 });
 
-document.addEventListener('click', () => {
+document.addEventListener('click', function() {
     const dropdown = document.getElementById('profileDropdown');
-    if (dropdown) dropdown.classList.remove('show');
+    if (dropdown) {
+        dropdown.classList.remove('show');
+    }
 });
 
 document.querySelectorAll('.game-card').forEach(card => {
