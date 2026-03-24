@@ -30,6 +30,7 @@ body {
     margin-bottom: 2rem;
     flex-wrap: wrap;
     gap: 1rem;
+    position: relative;
 }
 
 .logo {
@@ -105,32 +106,79 @@ body {
     position: absolute;
     top: 100%;
     right: 0;
+    margin-top: 12px;
     background: #2a2540;
     border: 1px solid #8a67b5;
     border-radius: 12px;
-    min-width: 160px;
-    margin-top: 8px;
+    min-width: 220px;
     z-index: 1000;
     display: none;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .profile-dropdown.show {
     display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.dropdown-user {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #322d48;
+}
+
+.dropdown-user i {
+    font-size: 32px;
+    color: #daa5ff;
+}
+
+.dropdown-user span {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 8px 0;
 }
 
 .profile-dropdown a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     padding: 12px 16px;
     color: #f0eaff;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: all 0.2s ease;
+    font-size: 14px;
 }
 
 .profile-dropdown a:hover {
     background: #4e4080;
-    border-radius: 12px;
+    color: white;
+}
+
+.profile-dropdown a i {
+    width: 20px;
+    font-size: 16px;
+    color: #daa5ff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .welcome-block {
@@ -452,5 +500,9 @@ body {
     }
     .welcome-title span {
         font-size: 2.2rem;
+    }
+    .profile-dropdown {
+        right: auto;
+        left: 0;
     }
 }
